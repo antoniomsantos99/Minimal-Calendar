@@ -10,21 +10,27 @@ int isBissexto(int year) {
   } else {return 1;}
 }
 
-int meses31(int month) {
+int meses(int month, int year) {
+  if (month == 2) {if (isBissexto(year) == 1) {return 29;} else {return 28;}}
+
   if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) {
-    if (( month < 8 && month % 2 != 0) || month % 2 == 0){
-      return 1;
-    }
-    return 0;
-  }
-}
+      return 31;}
 
-int primeiroDiaDaSemana (int m, int y) {
-  int n,d;
-  n = 1 + 2*m + (3*(m+1)/5) + y + (y/4) - (y/100) + (y/400) + 2;
-  d = n % 7;
+      return 30;}
 
-  return d;
+int primeiroDiaMes (int month, int year) {
+  int n,p;
+  n = (1 + 2*(month) + (3*(month+1)/5) + year + (year/4) - (year/100) + (year/400) + 2) % 7;
+
+  if (n==5) {p=4;}
+  if (n==4) {p=3;}
+  if (n==3) {p=2;}
+  if (n==2) {p=1;}
+  if (n==1) {p=0;}
+  if (n==0) {p=6;}
+  if (n==6) {p=5;}
+  if (n>6 || n<0) {printf("Shit went wrong!");}
+ return p;
 
 }
 
@@ -32,44 +38,27 @@ void imprimirDiasSemana() {
   printf("| D | S | T | Q | Q | S | S |\n");
 }
 
-void meteDias () {
+void meteDias (int month, int year) {
   int dia = 1;
   int l,c;
+  int d = primeiroDiaMes(month, year);
+  int h = meses(month, year);
+
+
+
     for (l = 0; l < 5; l++) {
         for (c = 0; c < 7; c++) {
+            if ((l == 0 && c < d) || dia > h) { printf("    ");} else {
             if (dia < 10) { printf("  %d ", dia);}
             else {printf(" %d ", dia);}
             dia++;
-
+}
         }
     printf("\n");
-    }
-
+}
 
 }
 
-  int pDiaDoMes () {
-    int d;
-    int day;
-    int month;
-    int year;
-    int p;
-    d = (day + 2*(month) + (3*(month+1)/5) + year + (year/4) - (year/100) + (year/400) + 2) % 7;
-
-    printf("D = %d\n",d);
-
-    if (d==5) { printf("O dia e Quinta\n");p=4;}
-    if (d==4) { printf("O dia e Quarta\n");p=3;}
-    if (d==3) { printf("O dia e terça\n");p=2;}
-    if (d==2) { printf("O dia e segunda\n");p=1;}
-    if (d==1) { printf("O dia e Domingo\n");p=0;}
-    if (d==0) { printf("O dia e sabado\n");p=6;}
-    if (d==6) { printf("O dia e sexta\n");p=5;}
-    if (d>6 || d<0) {printf("Shit went wrong!");}
-
-    printf("Returned D,success\n");
-    return p;
-  }
 
   void main() {
     int year, month;
@@ -78,5 +67,5 @@ void meteDias () {
     printf("Introduza o mês\n");
     scanf("%d",&month);
     imprimirDiasSemana();
-    meteDias();
+    meteDias(month,year);
   }
