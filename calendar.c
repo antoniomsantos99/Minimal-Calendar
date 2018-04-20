@@ -29,16 +29,24 @@ int primeiroDiaDaSemana (int m, int y) {
 }
 
 void imprimirDiasSemana() {
-  printf("|D|S|T|Q|Q|S|S|\n");
+  printf("| D | S | T | Q | Q | S | S |\n");
 }
 
-void meteDias() {
+void meteDias () {
+  int dia = 1;
   int l,c;
-  for(l=0;l<5;l++){
-    for(c=0;c<7;c++){
-      printf("%i\n",m[l][c]);
+    for (l = 0; l < 5; l++) {
+        for (c = 0; c < 7; c++) {
+            if (dia < 10) { printf("  %d ", dia);}
+            else {printf(" %d ", dia);}
+            dia++;
+
+        }
+    printf("\n");
     }
-  }
+
+
+}
 
   int pDiaDoMes () {
     int d;
