@@ -1,2 +1,2 @@
 # Minimal-Calendar
-[Learning-Tool] A broken mess of code that should be outputting a calendar page on the terminal.
+[Learning-Tool] A small tool that outputs a calendar in the terminal.
