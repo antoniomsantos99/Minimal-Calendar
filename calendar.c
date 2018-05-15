@@ -85,6 +85,7 @@ int meses(int month, int year) {
           meteDias(month,year);
           printf("\n");
         }
+        scanf(" ");
         return 1;
       }
       if (input == 1) {
@@ -94,8 +95,10 @@ int meses(int month, int year) {
         scanf("%d",&month);
         imprimirDiasSemana(month);
         meteDias(month,year);
+        scanf(" ");
         return 1;
       }
       printf("Invalid Input please restart the program.\n");
+      scanf(" ");
       return 0;
     }
